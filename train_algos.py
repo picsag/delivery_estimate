@@ -8,6 +8,13 @@ from tqdm import tqdm
 
 
 def split_data(data, cluster_column, test_size=0.25, random_state=42):
+    """
+    :param data: the preprocessed and engineered dataset
+    :param cluster_column: the name of the column which holds the ID of the city
+    :param test_size: percentage of test part from the dataset
+    :param random_state: a value for reproducing the results
+    :return: train and test Pandas DataFrames which hold the features for train and test
+    """
     # Set random seed for reproducibility
     np.random.seed(random_state)
 
