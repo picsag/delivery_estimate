@@ -19,7 +19,7 @@ The columns xhist_avg_actual_preptime is the average actual cooking time for the
 The xhist_avg_estimated_preptime is the average estimated cooking time for last 7 days including the day of the order.
 Some of the values for 2 columns: xhist_avg_estimated_preptime and xhist_avg_actual_preptime are missing.
 
-Actions performed:
+Actions performed:<br>
 [Data preprocessing](data_preprocessing.py) - fill the last 2 columns with average values for last 7 days before the order date <br>
 [Feature engineering](feature_engineering.py) - extract the date-time features <br>
 [Train regressors](train_algos.py) - train scikit-learn based Random Forest regressor for each cluster <br>
