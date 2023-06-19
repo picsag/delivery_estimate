@@ -20,10 +20,10 @@ The xhist_avg_estimated_preptime is the average estimated cooking time for last 
 Some of the values for 2 columns: xhist_avg_estimated_preptime and xhist_avg_actual_preptime are missing.
 
 Actions performed:
-[Data preprocessing](data_preprocessing.py) - fill the last 2 columns with average values for last 7 days before the order date
-[Feature engineering](feature_engineering.py) - extract the date-time features
-[Train regressors](train_algos.py) - train scikit-learn based Random Forest regressor for each cluster
-[Dashboard](./dashboard/dashboard.py) - Dashboard with 2 tabs for business analysis and ML predictions
-[Dashboard Dockerfile](./dashboard/Dockerfile) - Dockerfile for the dashboard with Gunicorn for WSGI capability
-[GAN Feature generation](./generate_data.py) - Generative Adversarial Networks employed to generate artificial records
+[Data preprocessing](data_preprocessing.py) - fill the last 2 columns with average values for last 7 days before the order date <br>
+[Feature engineering](feature_engineering.py) - extract the date-time features <br>
+[Train regressors](train_algos.py) - train scikit-learn based Random Forest regressor for each cluster <br>
+[Dashboard](./dashboard/dashboard.py) - Dashboard with 2 tabs for business analysis and ML predictions <br>
+[Dashboard Dockerfile](./dashboard/Dockerfile) - Dockerfile for the dashboard with Gunicorn for WSGI capability <br>
+[GAN Feature generation](./generate_data.py) - Generative Adversarial Networks employed to generate artificial records <br>
 ... TO BE CONTINUED ...
