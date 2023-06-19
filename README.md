@@ -30,4 +30,4 @@ Actions performed:<br>
 
 <br>
 Figure for comparing the real vs artificial generated dataset <br>
-![GAN generated dataset](./images/GAN_feats.jpg "Real vs artificial datasets")
+<img src="./images/GAN_feats.jpg" alt="Real vs synthetic datasets">
