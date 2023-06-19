@@ -27,3 +27,7 @@ Actions performed:<br>
 [Dashboard Dockerfile](./dashboard/Dockerfile) - Dockerfile for the dashboard with Gunicorn for WSGI capability <br>
 [GAN Feature generation](./generate_data.py) - Generative Adversarial Networks employed to generate artificial records <br>
 ... TO BE CONTINUED ...
+
+<br>
+Figure for comparing the real vs artificial generated dataset <br>
+![GAN generated dataset](./images/GAN_feats.jpg "Real vs artificial datasets")
