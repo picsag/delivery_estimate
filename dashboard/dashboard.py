@@ -8,9 +8,11 @@ from dash import dcc, html
 data_file = 'data_final.csv'
 df = pd.read_csv(data_file)
 
-# Read the MSE data from the CSV file
-mse_file = 'mse_scores_randomforest.csv'
-mse_data = pd.read_csv(mse_file)
+# Read the MSE data from the CSV files
+mse_file_rf = 'mse_scores_randomforest.csv'
+mse_file_fused_rf = 'mse_scores_fused_randomforest.csv'
+mse_data_rf = pd.read_csv(mse_file_rf)
+mse_data_fused_rf = pd.read_csv(mse_file_fused_rf)
 
 
 def create_bar_chart(dataframe, column, title):
@@ -41,9 +43,27 @@ def create_histogram(dataframe, column, title):
     return fig
 
 
-def create_mse_bar_chart(dataframe):
-    fig = go.Figure(data=go.Bar(x=dataframe['account_cluster_id'], y=dataframe['mse_score']))
-    fig.update_layout(title='MSE Scores by Cluster ID', xaxis_title='Cluster ID', yaxis_title='MSE')
+def create_mse_grouped_bar_chart(dataframe_rf, dataframe_fused_rf):
+    fig = go.Figure()
+
+    fig.add_trace(go.Bar(
+        x=dataframe_rf['account_cluster_id'],
+        y=dataframe_rf['mse_score'],
+        name='Random Forest',
+        marker=dict(color='blue')
+    ))
+
+    fig.add_trace(go.Bar(
+        x=dataframe_fused_rf['account_cluster_id'],
+        y=dataframe_fused_rf['mse_score'],
+        name='Augmented Random Forest',
+        marker=dict(color='orange')
+    ))
+
+    fig.update_layout(title='MSE Scores Comparison by Cluster ID',
+                      xaxis_title='Cluster ID',
+                      yaxis_title='MSE')
+
     return fig
 
 
@@ -79,9 +99,9 @@ app.layout = html.Div(children=[
         ], tab_style={'backgroundColor': '#f8f8f8'}),
 
         dbc.Tab(label="Predictions", children=[
-            # Add the MSE bar chart
+            # Add the MSE grouped bar chart
             html.Div(children=[
-                dcc.Graph(figure=create_mse_bar_chart(mse_data))
+                dcc.Graph(figure=create_mse_grouped_bar_chart(mse_data_rf, mse_data_fused_rf))
             ], className="container mt-4")
         ], tab_style={'backgroundColor': '#f8f8f8'})
     ])

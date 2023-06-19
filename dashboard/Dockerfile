@@ -5,12 +5,13 @@ WORKDIR /app
 # Copy the datasets
 COPY data_final.csv .
 COPY mse_scores_randomforest.csv .
+COPY mse_scores_fused_randomforest.csv .
 
 # Copy requirements.txt
 COPY requirements.txt .
 
 # Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --index-url=https://pypi.org/simple/ -r requirements.txt
 
 # Copy the Dash app code
 COPY dashboard.py .

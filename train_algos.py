@@ -60,6 +60,8 @@ class RandomForestTrainer:
             # Save the model to a pickle file
             cluster_id = int(cluster)  # Extract the integer part of the cluster_id
             filename = f'./models/randomforest_{cluster_id}.pickle'
+            if len(self.train_data) > len(self.test_data) * 4:
+                filename = f'./models/randomforest_{cluster_id}_fused.pickle'
             with open(filename, 'wb') as file:
                 pickle.dump(model, file)
 
@@ -107,6 +109,24 @@ def main():
 
     # Specify the filename for MSE scores
     mse_filename = 'mse_scores_randomforest.csv'
+
+    # Load the saved models, test them on the test data, and save MSE scores
+    trainer.load_and_test_models(mse_filename)
+
+    # Now augmenting the training data with synthetic data for evaluation
+    synthetic_data = pd.read_csv('./data/data_final_artificial.csv')
+
+    # Concatenate real and synthetic data for training
+    train_data = pd.concat([train_data, synthetic_data])
+
+    # Create an instance of the RandomForestTrainer class
+    trainer = RandomForestTrainer(train_data, test_data, 'account_cluster_id')
+
+    # Train the models and save them in pickle files
+    trainer.train_models()
+
+    # Specify the filename for MSE scores
+    mse_filename = 'mse_scores_fused_randomforest.csv'
 
     # Load the saved models, test them on the test data, and save MSE scores
     trainer.load_and_test_models(mse_filename)
